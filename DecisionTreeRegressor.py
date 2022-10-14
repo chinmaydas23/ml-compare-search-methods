@@ -15,6 +15,10 @@ from sklearn.metrics import accuracy_score
 from sklearn import neighbors, metrics
 from sklearn.preprocessing import LabelEncoder
 
+GridBestScore = []
+RandBestScore = []
+BayesBestScore = []
+
 model = DecisionTreeRegressor(random_state = None)
 
 DTRparams = {'criterion': ('squared_error', 'friedman_mse', 'absolute_error', 'poisson'),

@@ -15,6 +15,10 @@ from sklearn.preprocessing import LabelEncoder
 from pmlb import dataset_names, classification_dataset_names, regression_dataset_names
 from pmlb import fetch_data
 
+GridBestScore = []
+RandBestScore = []
+BayesBestScore = []
+
 model = svm.SVR()
 
 KNRparams = {   'weights' : ('uniform', 'distance'),

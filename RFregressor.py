@@ -14,15 +14,11 @@ from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn import neighbors, metrics
 from sklearn.preprocessing import LabelEncoder
-# df= pd.read_csv('1089_USCrime.tsv', sep= '\t')
-# print(df.head())
-# y= df[['target']]
-# print(y)
-# X=df[[]]
 
-# model = svm.SVR()
-# model.fit(X_train,y_train)
-# m=model.score(X,y)
+GridBestScore = []
+RandBestScore = []
+BayesBestScore = []
+
 grid_search = GridSearchCV(RandomForestRegressor(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
@@ -35,26 +31,33 @@ random_search = RandomizedSearchCV(RandomForestRegressor(random_state=0),
                               'n_estimators': np.arange(5, 100, 5),
                               'criterion' : ('squared_error', 'absolute_error', 'poisson'),
                               'max_features': np.arange(0.1, 0.5, 0.05)
-                          }, cv=3, n_iter=10, scoring="r2", verbose=2, n_jobs=-1)
+                          }, cv=3, n_iter=3, scoring="r2", verbose=2, n_jobs=-1)
 bayes_search = BayesSearchCV(RandomForestRegressor(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
                               'criterion' : ('squared_error', 'absolute_error', 'poisson'),
                               'max_features': np.arange(0.1, 0.5, 0.05),
-                          }, cv=3, n_iter=10, scoring="r2", verbose=2, n_jobs=-1)
+                          }, cv=3, n_iter=3, scoring="r2", verbose=2, n_jobs=-1)
 
-for regression_dataset in regression_dataset_names[:5]:
+for regression_dataset in regression_dataset_names[:1]:
     X, y = fetch_data(regression_dataset, return_X_y=True)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
     grid_search.fit(X_train,y_train)
     print("Best Params for dataset By GRID Search are ", grid_search.best_params_)
     print("Best Score for Grid Search is ", grid_search.best_score_)
+    GridBestScore.append(grid_search.score(X_test, y_test))
 
     random_search.fit(X_train, y_train)
     print("Best Params for dataset By Random Search are ", random_search.best_params_)
     print("Best Score for Random Search is ", random_search.best_score_)
+    RandBestScore.append(random_search.score(X_test, y_test))
 
     bayes_search.fit(X_train,y_train)
     print("Best Params for dataset By Bayes Search are ", bayes_search.best_params_)
     print("Best Score for Bayes Search is ", bayes_search.best_score_)
+    BayesBestScore.append(bayes_search.score(X_test, y_test))
+
+print(GridBestScore)
+print(RandBestScore)
+print(BayesBestScore)

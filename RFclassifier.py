@@ -24,18 +24,18 @@ grid_search = GridSearchCV(RandomForestClassifier(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
                               'max_features': np.arange(0.1, 0.5, 0.05)
-                          }, cv=3, scoring="r2", verbose=2, n_jobs=-1   # verbose values and accuracy scores
+                          }, cv=3, scoring='accuracy', verbose=2, n_jobs=-1   # verbose values and accuracy scores
                           )
-random_search = RandomizedSearchCV(RandomForestRegressor(random_state=0),
+random_search = RandomizedSearchCV(RandomForestClassifier(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
                               'max_features': np.arange(0.1, 0.5, 0.05)
-                          }, n_iter=10, cv=3, scoring="r2", verbose=2, n_jobs=-1)
-bayes_search = BayesSearchCV(RandomForestRegressor(random_state=0),
+                          }, n_iter=10, cv=3, scoring='accuracy', verbose=2, n_jobs=-1)
+bayes_search = BayesSearchCV(RandomForestClassifier(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
                               'max_features': np.arange(0.1, 0.5, 0.05),
-                          }, n_iter=5, cv=3, scoring="r2", verbose=2, n_jobs=-1)
+                          }, n_iter=5, cv=3, scoring='accuracy', verbose=2, n_jobs=-1)
 
 for classification_dataset in classification_dataset_names[:1]:
 

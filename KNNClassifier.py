@@ -17,6 +17,10 @@ from sklearn.neighbors import KNeighborsRegressor
 from pmlb import dataset_names, classification_dataset_names, regression_dataset_names
 from pmlb import fetch_data
 
+GridBestScore = []
+RandBestScore = []
+BayesBestScore = []
+
 model = KNeighborsClassifier()
 
 KNCparams = {   'weights' : ('uniform', 'distance'),
@@ -25,9 +29,9 @@ KNCparams = {   'weights' : ('uniform', 'distance'),
             }
 
 
-grid_search = GridSearchCV(model, KNCparams, cv = 3,scoring="r2", verbose=2, n_jobs=-1)
-random_search = RandomizedSearchCV(model, KNCparams, cv=3, n_iter=10, scoring="r2", verbose=2, n_jobs=-1, random_state=None)
-bayes_search = BayesSearchCV(model, KNCparams, cv=3, n_iter=10, scoring="r2", verbose=2, n_jobs=-1, random_state=None)
+grid_search = GridSearchCV(model, KNCparams, cv = 3,scoring='accuracy', verbose=2, n_jobs=-1)
+random_search = RandomizedSearchCV(model, KNCparams, cv=3, n_iter=10, scoring='accuracy', verbose=2, n_jobs=-1, random_state=None)
+bayes_search = BayesSearchCV(model, KNCparams, cv=3, n_iter=10, scoring='accuracy', verbose=2, n_jobs=-1, random_state=None)
 
 for classification_dataset in classification_dataset_names[:5]:
     # Read in the datasets and split them into training/testing
@@ -45,3 +49,7 @@ for classification_dataset in classification_dataset_names[:5]:
     bayes_search.fit(X_train, y_train)
     print("Best Params for dataset By Bayes Search are ", bayes_search.best_params_)
     print("Best Score for Bayes Search is ", bayes_search.best_score_)
+
+print(GridBestScore)
+print(RandBestScore)
+print(BayesBestScore)

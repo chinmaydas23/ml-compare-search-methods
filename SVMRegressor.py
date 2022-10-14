@@ -15,6 +15,10 @@ from sklearn.preprocessing import LabelEncoder
 from pmlb import dataset_names, classification_dataset_names, regression_dataset_names
 from pmlb import fetch_data
 
+GridBestScore = []
+RandBestScore = []
+BayesBestScore = []
+
 model = svm.SVR()
 
 SVRparams = { 'kernel': ('linear', 'poly', 'rbf', 'sigmoid'),
@@ -43,3 +47,7 @@ for regression_dataset in regression_dataset_names[:5]:
     bayes_search.fit(X_train, y_train)
     print("Best Params for dataset By Bayes Search are ", bayes_search.best_params_)
     print("Best Score for Bayes Search is ", bayes_search.best_score_)
+
+print(GridBestScore)
+print(RandBestScore)
+print(BayesBestScore)
