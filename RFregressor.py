@@ -28,24 +28,24 @@ BayesTimeTaken = []
 grid_search = GridSearchCV(RandomForestRegressor(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
-                              'criterion': ('squared_error', 'absolute_error', 'poisson'),
+                              # 'criterion': ('squared_error', 'absolute_error', 'poisson'),
                               'max_features': np.arange(0.1, 0.5, 0.05),
                           }, cv=3, scoring="r2", verbose=2, n_jobs=-1   # verbose values and accuracy scores
                           )
 random_search = RandomizedSearchCV(RandomForestRegressor(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
-                              'criterion' : ('squared_error', 'absolute_error', 'poisson'),
+                              # 'criterion' : ('squared_error', 'absolute_error', 'poisson'),
                               'max_features': np.arange(0.1, 0.5, 0.05)
                           }, cv=3, n_iter=3, scoring="r2", verbose=2, n_jobs=-1)
 bayes_search = BayesSearchCV(RandomForestRegressor(random_state=0),
                           {
                               'n_estimators': np.arange(5, 100, 5),
-                              'criterion' : ('squared_error', 'absolute_error', 'poisson'),
+                              # 'criterion' : ('squared_error', 'absolute_error', 'poisson'),
                               'max_features': np.arange(0.1, 0.5, 0.05),
                           }, cv=3, n_iter=3, scoring="r2", verbose=2, n_jobs=-1)
 
-for regression_dataset in regression_dataset_names[1:15]:
+for regression_dataset in regression_dataset_names[1:7]:
     X, y = fetch_data(regression_dataset, return_X_y=True)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 

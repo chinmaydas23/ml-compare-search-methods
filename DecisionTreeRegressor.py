@@ -35,7 +35,7 @@ grid_search = GridSearchCV(model, DTRparams, cv = 3, scoring="r2", verbose=2, n_
 random_search = RandomizedSearchCV(model, DTRparams, n_iter=10, cv=3, scoring="r2", verbose=2, n_jobs=-1)
 bayes_search = BayesSearchCV(model, DTRparams, n_iter=10, cv=3, scoring="r2", verbose=2, n_jobs=-1)
 
-for regression_dataset in regression_dataset_names[1:15]:
+for regression_dataset in regression_dataset_names[1:6]:
     X, y = fetch_data(regression_dataset, return_X_y=True)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
