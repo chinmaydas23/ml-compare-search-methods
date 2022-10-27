@@ -13,8 +13,10 @@ Separate codes implementing each of Grid, Random and Bayesian Search on four dif
 - The original dataset for benchmarking has been taken from PMLB, and can be found [here](https://epistasislab.github.io/pmlb/).
 
 ### How to run
-    Install all the necessary packages from the requirements section and the codes mentioned in the repository.
-    Add the "main.py" file to your local python environment and run it. That is all there is to be done. The file will then run the comparison of all the methods, taking in all four classification models first, and the regression models second. It will end once all the plots comparing the methods for each model has been saved to your project workspace. 
+- Install all the necessary packages from the requirements section and the codes mentioned in the repository.
+- Add the "main.py" file to your local python environment and run it. That is all there is to be done. 
+- The file will then run the comparison of all the methods, taking in all four classification models first, and the regression models second. 
+- It will end once all the plots comparing the methods for each model has been saved to your project workspace. 
 
 ### Plots
 The code runs for the datasets checking whether it is a classification or regression dataset and gives us a plot of the average accuracy score with respect to each of the search methods over the entire set of datasets. The code also gives us a plot of the average time of execution of each search model over the entire dataset. Following are the two sample plots for the Random Forest Classifier method, results on the whole PMLB classification datasets :
