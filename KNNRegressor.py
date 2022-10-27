@@ -12,6 +12,7 @@ from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn import neighbors, metrics
 from sklearn.preprocessing import LabelEncoder
+from sklearn.neighbors import KNeighborsRegressor
 from pmlb import dataset_names, classification_dataset_names, regression_dataset_names
 from pmlb import fetch_data
 from datetime import datetime, timedelta
@@ -26,10 +27,10 @@ RandTimeTaken = []
 BayesTimeTaken = []
 
 
-model = svm.SVR()
+model = KNeighborsRegressor()
 
 KNRparams = {   'weights' : ('uniform', 'distance'),
-                'n_neighbours' : np.arange(1,5,1),
+                # 'n_neighbours' : np.arange(1,5,1),
                 'algorithm' : ('auto', 'ball_tree', 'kd_tree', 'brute')
             }
 
@@ -37,7 +38,7 @@ grid_search = GridSearchCV(model, KNRparams, cv = 3,scoring="r2", verbose=2, n_j
 random_search = RandomizedSearchCV(model, KNRparams, n_iter = 5, cv = 3, verbose=2, random_state=None, n_jobs = -1)
 bayes_search = BayesSearchCV(model, KNRparams, cv=3, n_iter=5, scoring="r2", verbose=2, n_jobs=-1, random_state=None)
 
-for regression_dataset in regression_dataset_names[1:15]:
+for regression_dataset in regression_dataset_names[1:6]:
     X, y = fetch_data(regression_dataset, return_X_y=True)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
@@ -151,4 +152,4 @@ ax2.set_title('COMPARISON OF SEARCH METHODS - KNN REGRESSOR(Time of Execution)')
 ax2.set_xticklabels(xlabels, rotation=0)
 add_value_labels(ax2)
 plt.show()
-plt.savefig('KNNReegressorAvgTimesPlot.pdf')
+plt.savefig('KNNRegressorAvgTimesPlot.pdf')
