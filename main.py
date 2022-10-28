@@ -84,7 +84,7 @@ for i in range(8):
         random_search = RandomizedSearchCV(model, params, n_iter=10, cv=3, scoring='accuracy', verbose=2, n_jobs=-1)
         bayes_search = BayesSearchCV(model, params, n_iter=10, cv=3, scoring='accuracy', verbose=2, n_jobs=-1)
 
-        for classification_dataset in classification_dataset_names[1:2]:
+        for classification_dataset in classification_dataset_names:
             # Read in the datasets and split them into training/testing
             X, y = fetch_data(classification_dataset, return_X_y=True)
             X_train, X_test, y_train, y_test = train_test_split(X, y)
@@ -95,7 +95,7 @@ for i in range(8):
         random_search = RandomizedSearchCV(model, params, n_iter=5, cv=3, verbose=2, random_state=None, n_jobs=-1)
         bayes_search = BayesSearchCV(model, params, cv=3, n_iter=5, scoring="r2", verbose=2, n_jobs=-1,random_state=None)
 
-        for regression_dataset in regression_dataset_names[1:2]:
+        for regression_dataset in regression_dataset_names:
             X, y = fetch_data(regression_dataset, return_X_y=True)
             X_train, X_test, y_train, y_test = train_test_split(X, y)
 
@@ -202,7 +202,7 @@ for i in range(8):
     plt.figure(figsize=(12,8))
     ax2 = avg_series2.plot(kind='bar', color= ['red', 'green', 'blue'])
     ax2.set_xlabel('Search Method -> ')
-    ax2.set_ylabel('Average Time -> ')
+    ax2.set_ylabel('Average Time (in seconds)-> ')
     ax2.set_title("COMPARISON OF SEARCH METHODS - Time of Execution: "+modelnames[i] +" ")
     ax2.set_xticklabels(xlabels, rotation=0)
     add_value_labels(ax2)

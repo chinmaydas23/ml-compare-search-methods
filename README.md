@@ -1,4 +1,4 @@
-# Search Methods Comparison
+# Comparison of Hyperparameter Optimization methods in ML
 
 ## Grid Search vs Randon Search vs Bayesian Optimization
 Separate codes implementing each of Grid, Random and Bayesian Search on four different classification and four different regression models, on all datasets of PMLB. Along with this a single algorithm, applying all three searches on the same datasets, so as to find out which one works the best by plotting the comparison for better visualization.
