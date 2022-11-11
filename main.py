@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-from sklearn import datasets
-from sklearn.model_selection import ParameterGrid
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
@@ -10,9 +8,6 @@ from skopt import BayesSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
-from sklearn.metrics import accuracy_score
-from sklearn import neighbors, metrics
-from sklearn.preprocessing import LabelEncoder
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import KNeighborsRegressor
 from pmlb import dataset_names, classification_dataset_names, regression_dataset_names
@@ -91,9 +86,9 @@ for i in range(8):
     elif i >= 4:
         # REGRESSION models:
 
-        grid_search = GridSearchCV(model, params, cv=3, scoring="r2", verbose=2, n_jobs=-1,error_score='raise')
-        random_search = RandomizedSearchCV(model, params, n_iter=5, cv=3, verbose=2, random_state=None, n_jobs=-1)
-        bayes_search = BayesSearchCV(model, params, cv=3, n_iter=5, scoring="r2", verbose=2, n_jobs=-1,random_state=None)
+        grid_search = GridSearchCV(model, params, cv=3, scoring="r2", verbose=2, n_jobs=-1, error_score='raise')
+        random_search = RandomizedSearchCV(model, params, n_iter=5, cv=3, scoring="r2", verbose=2, random_state=None, n_jobs =-1)
+        bayes_search = BayesSearchCV(model, params, cv=3, n_iter=5, scoring="r2", verbose=2, n_jobs=-1, random_state=None)
 
         for regression_dataset in regression_dataset_names:
             X, y = fetch_data(regression_dataset, return_X_y=True)
